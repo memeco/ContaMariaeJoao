@@ -15,25 +15,30 @@ public class ContaBancaria
     public void Depositar(double valor)
     {
         Saldo += valor;
-        Console.WriteLine($"Depósito de {valor} realizado com sucesso. Novo saldo: {Saldo}");
+        Console.WriteLine($"{Operacao(Titular, "depósito")} de {valor} realizado com sucesso. Novo saldo: {Saldo}");
     }
 
     public void Sacar(double valor)
     {
         if (valor > Saldo)
         {
-            Console.WriteLine("Saldo insuficiente");
+            Console.WriteLine($"{Operacao(Titular, "saque")}: Saldo insuficiente");
         }
         else
         {
             Saldo -= valor;
-            Console.WriteLine($"Saque de {valor} realizado com sucesso. Novo saldo: {Saldo}");
+            Console.WriteLine($"{Operacao(Titular, "saque")} de {valor} realizado com sucesso. Novo saldo: {Saldo}");
         }
     }
 
     public void ExibirSaldo()
     {
         Console.WriteLine($"Saldo atual da conta de {Titular}: {Saldo}");
+    }
+
+    private string Operacao(string titular, string tipo)
+    {
+        return $"[{tipo.ToUpper()}] - {titular}";
     }
 }
 
