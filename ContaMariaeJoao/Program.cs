@@ -53,6 +53,7 @@ class Program
         // Transferindo 300 da conta de Maria para a conta de João
         contaMaria.Sacar(300);
         contaJoao.Depositar(300);
+        Console.WriteLine();
 
         // Exibindo os saldos atualizados das contas
         contaJoao.ExibirSaldo();
