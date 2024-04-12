@@ -51,7 +51,6 @@ public class Program
         Console.WriteLine($"{contaJoao.Titular} fez depósito inicial de R${saldoInicial} com sucesso.");
 
         contaJoao.Depositar(500); // Pass the actual value being deposited (500)
-        Console.WriteLine(); // Nova linha para melhor visualização
 
         // Corrigindo a mensagem de saque do João
         Console.WriteLine($"{contaJoao.Titular} fez saque de R$200 com sucesso.");
