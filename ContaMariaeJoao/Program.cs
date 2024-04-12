@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class ContaBancaria
+class ContaBancaria
 {
     public string Titular;
     public double Saldo;
@@ -14,58 +14,49 @@ public class ContaBancaria
     public void Depositar(double valor)
     {
         Saldo += valor;
-        Console.WriteLine($"{Titular} fez depósito de R${valor} com sucesso. Novo saldo: R${Saldo}");
+        Console.WriteLine($"Depósito de {valor} realizado com sucesso. Novo saldo: {Saldo}");
     }
 
     public void Sacar(double valor)
     {
         if (valor > Saldo)
         {
-            Console.WriteLine($"{Titular}: Saldo insuficiente");
+            Console.WriteLine("Saldo insuficiente");
         }
         else
         {
             Saldo -= valor;
-            Console.WriteLine($"{Titular} fez saque de R${valor} com sucesso. Novo saldo: R${Saldo}");
+            Console.WriteLine($"Saque de {valor} realizado com sucesso. Novo saldo: {Saldo}");
         }
     }
-
     public void ExibirSaldo()
     {
-        Console.WriteLine($"Saldo atual da conta de {Titular}: R${Saldo}");
+        Console.WriteLine($"Saldo atual da conta de {Titular}: {Saldo}");
     }
 }
 
-public class Program
+class Program
 {
     static void Main(string[] args)
     {
-        // Criando contas bancárias
-        double saldoInicial = 1000;
-        ContaBancaria contaJoao = new ContaBancaria("João", saldoInicial);
+        // Criando uma conta bancária para João com saldo inicial de 1000
+        ContaBancaria contaJoao = new ContaBancaria("João", 1000);
+
+        // Realizando operações na conta de João
+        contaJoao.Depositar(500);
+        contaJoao.Sacar(200);
+        contaJoao.ExibirSaldo();
+
+        // Criando uma nova conta bancária para Maria com saldo inicial de 2000
         ContaBancaria contaMaria = new ContaBancaria("Maria", 2000);
 
-        // Realizando operações
+        // Transferindo 300 da conta de Maria para a conta de João
+        contaMaria.Sacar(300);
+        contaJoao.Depositar(300);
 
-        // Corrigindo a mensagem de depósito inicial do João
-        Console.WriteLine($"{contaJoao.Titular} fez depósito inicial de R${saldoInicial} com sucesso.");
-
-        contaJoao.Depositar(500); // Pass the actual value being deposited (500)
-
-        // Corrigindo a mensagem de saque do João
-        Console.WriteLine($"{contaJoao.Titular} fez saque de R$200 com sucesso.");
-        contaJoao.Saldo -= 200;
-
-        // Corrigindo a mensagem de saque da Maria
-        Console.WriteLine($"{contaMaria.Titular} fez saque de R$300 com sucesso.");
-        contaMaria.Saldo -= 300;
-
-        // Corrigindo a mensagem de depósito de R$300 do João
-        Console.WriteLine($"{contaJoao.Titular} fez depósito de R${500} realizado com sucesso. Novo saldo: R${contaJoao.Saldo}");
-
-        // Exibindo saldos
-        Console.WriteLine(); // Nova linha para melhor visualização
+        // Exibindo os saldos atualizados das contas
         contaJoao.ExibirSaldo();
         contaMaria.ExibirSaldo();
+
     }
 }
